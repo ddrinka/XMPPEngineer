@@ -1,6 +1,7 @@
 version: 1.0.{build}
 configuration:
   - Debug
+  - Release
 image: Visual Studio 2017
 dotnet_csproj:
   patch: true
@@ -13,3 +14,11 @@ build:
   publish_nuget: true
   publish_nuget_symbols: true
   verbosity: minimal
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/johnny/api/v2/package
+  api_key:
+    secure: dDkFXGebDfxU/8RsHY0P+9sLSGhYL/zFl3mNb+4MYY0Ozbc9WKsCF2g6uGRXjDuh
+  symbol_server: https://www.myget.org/F/johnny/symbols/api/v2/package
+  on:
+    configuration: Debug
